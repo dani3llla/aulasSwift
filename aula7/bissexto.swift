@@ -7,16 +7,22 @@ import Foundation
 // Regras para ano bissexto:
 // Divisível por 4 E (não divisível por 100 OU divisível por 400)
 
-func ano(bissexto: Int) -> {
-  let resultado = ano / 4
-  return resultado
+func anoBissexto(ano: Int) -> Bool {
+  var bissexto = false
+
+  if ano % 4 == 0 && (ano % 100 != 0 || ano % 400 == 0{
+    bissexto = true
+  }
+
+
+  return bissexto
 }
 
 print("Digite o Ano:")
-let result = Int(readLine()!)!
+let ano = Int(readLine()!)!
 
-if ano / 4 != ano / 100 && ano / 400 {
-  print("Ano Bissexto")
-} else if ano / 100 && ano / 400 {
-  print("Não é Bissexto")
+if  anoBissexto(ano: ano){
+  print("\(ano) é bissexto!")
+} else {
+  print("\(ano) não é bissexto.")
 }

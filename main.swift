@@ -1,36 +1,56 @@
 import Foundation
 
-// Fazer questões beecrowd 1019, 1038 e >1159<
-
-// BEECROWD 1038 ⬇️⬇️
+var opcaoFinal = -1
 
 
-print("Digite o número do seu lanche: \n1-Cachorro-Quente \n2-X-Salada \n3-X-Bacon \n4-Torrada Simples \n5-Refrigerante")
-
-guard let entrada = readLine(),
-  let id = Int(entrada) else{
-    exit(1)
-  }
-
-print("Escolha a quantidade:")
-guard let 
-
-let quantidadeD = Double(quantidade)
-var valor = 0.0
-
-switch id {
-  case 1: 
-  valor= quantidadeD * 4.00
-  case 2: 
-  valor= quantidadeD * 4.50
-  case 3: 
-  valor= quantidadeD * 5.00
-  case 4: 
-  valor= quantidadeD * 2.0
-  case 5: 
-  valor= quantidadeD * 1.0
-  default:
-  print("Opção nao existe!")
+func listarFilmes(lista: [String] ) {
+    var posicao = 0
+    if lista.count == 0 {
+        print("Nenhum filme na lista.")
+    }
+    else {
+        for filme in lista{
+            posicao += 1
+            print("\(posicao) - \(filme)")
+        }
+    }
 }
 
-print(valor)
+func adicionarFilme(lista: [String], filme: String) -> [String] {
+    var listaInterna = lista
+    listaInterna.append(filme)
+    print("Filme adicionado com sucesso")
+    return listaInterna
+}
+
+
+var listaGlobal: [String] = []
+
+print("===MEUS FILMES=== \n1-Listar filmes \n2-Adicionar Filmes \n3-Remover filmes \n4-Editar Filme \n0-Sair ")
+
+repeat {
+  print ("Digite uma opcao:")
+
+  guard let opcao = readLine(),
+    let opcaoInt = Int(opcao)  else{
+      print("Erro❌ Texto foi digitado. Tente novamente.")
+      continue
+    } 
+
+  opcaoFinal = opcaoInt
+  switch opcaoFinal {
+    case 1:
+        listarFilmes(lista: listaGlobal)
+
+    case 2: 
+        guard let filmeEscolhido = readLine() else {
+            exit(1)
+        }
+        listaGlobal = adicionarFilme(lista: listaGlobal, filme: filmeEscolhido) 
+
+    default:
+        print("Essa opcao nao existe")
+    }
+
+} while opcaoFinal != 0
+
